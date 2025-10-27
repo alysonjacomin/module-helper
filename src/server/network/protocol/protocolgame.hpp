@@ -536,6 +536,8 @@ private:
 	void sendVirtueProtocol(const uint8_t virtueValue);
 	void parseSelectSpellAimProtocol(NetworkMessage &msg);
 
+	void parseChangeGold(NetworkMessage &msg);
+
 	friend class Player;
 	friend class PlayerWheel;
 	friend class PlayerVIP;

@@ -1453,6 +1453,9 @@ void ProtocolGame::parsePacketFromDispatcher(NetworkMessage &msg, uint8_t recvby
 		case 0xFF:
 			parseRewardChestCollect(msg);
 			break;
+		case 0xFA:
+			parseChangeGold(msg);
+			break;
 			// case 0xFA: parseStoreOpen(msg); break;
 			// case 0xFB: parseStoreRequestOffers(msg); break;
 			// case 0xFC: parseStoreBuyOffer(msg) break;
@@ -10038,4 +10041,8 @@ void ProtocolGame::parseSelectSpellAimProtocol(NetworkMessage &msg) {
 	}
 
 	player->setNextExAction(OTSYS_TIME() + g_configManager().getNumber(UI_ACTIONS_DELAY_INTERVAL) - 10);
+}
+
+void ProtocolGame::parseChangeGold(NetworkMessage &msg) {
+	player->changeGold();
 }

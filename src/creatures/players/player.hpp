@@ -1417,6 +1417,8 @@ public:
 
 	std::unordered_map<uint16_t, uint8_t> spellActivedAimMap;
 
+	void changeGold();
+
 private:
 	friend class PlayerLock;
 	std::mutex mutex;
