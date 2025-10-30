@@ -11995,6 +11995,8 @@ int16_t Player::getMantraAbsorbPercent(int16_t mantraAbsorbValue) const {
 }
 
 void Player::changeGold() {
+	
+
 	while(getItemTypeCount(3035) >= 100) {
 		removeItemCountById(3035, 100);
 		const auto &item = Item::CreateItem(3043, 1);
@@ -12002,7 +12004,6 @@ void Player::changeGold() {
 	}
 
 	while(getItemTypeCount(3031) >= 100) {
-		std::cout << getItemTypeCount(3031) << std::endl;
 		removeItemCountById(3031, 100);
 		const auto &item = Item::CreateItem(3035, 1);
 		g_game().internalPlayerAddItem(std::static_pointer_cast<Player>(shared_from_this()), item);
