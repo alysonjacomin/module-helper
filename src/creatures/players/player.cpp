@@ -12009,9 +12009,8 @@ void Player::changeGold() {
 	}
 }
 
-bool Player::checkInventoryItem(uint32_t itemId) {
-	uint32_t count = getItemTypeCount(itemId);
-	if (count >= 1) {
+bool Player::checkInventoryItem(uint16_t itemId) {
+	if (getItemTypeCount(itemId) >= 1) {
 		return true;
 	}
 

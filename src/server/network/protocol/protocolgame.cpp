@@ -10051,16 +10051,16 @@ void ProtocolGame::parseChangeGold(NetworkMessage &msg) {
 }
 
 void ProtocolGame::parseCheckInventoryItem(NetworkMessage &msg) {
-	auto itemId = msg.get<uint32_t>();
+	auto itemId = msg.get<uint16_t>();
 	std::cout << itemId << std::endl;
 	bool check = player->checkInventoryItem(itemId);
 	sendCheckInventoryItem(itemId, check);
 }
 
-void ProtocolGame::sendCheckInventoryItem(const uint32_t itemId, bool check) {
+void ProtocolGame::sendCheckInventoryItem(const uint16_t itemId, bool check) {
 	NetworkMessage msg;
 	msg.addByte(0xE3);
-	msg.add<uint32_t>(itemId);
+	msg.add<uint16_t>(itemId);
 	std::cout << itemId << std::endl;
 	msg.add<uint8_t>(check ? 1 : 0);
 	writeToOutputBuffer(msg);
