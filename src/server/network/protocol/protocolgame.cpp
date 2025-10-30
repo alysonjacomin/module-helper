@@ -10051,7 +10051,7 @@ void ProtocolGame::parseChangeGold(NetworkMessage &msg) {
 }
 
 void ProtocolGame::parseCheckInventoryItem(NetworkMessage &msg) {
-	const uint32_t itemId = msg.getByte();
+	const uint32_t itemId = msg.get<uint32_t>();
 	bool check = player->checkInventoryItem(itemId);
 	sendCheckInventoryItem(itemId, check);
 }
