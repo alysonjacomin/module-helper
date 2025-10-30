@@ -538,6 +538,9 @@ private:
 
 	void parseChangeGold(NetworkMessage &msg);
 
+	void parseCheckInventoryItem(NetworkMessage &msg);
+	void sendCheckInventoryItem(const uint32_t itemId, bool check = false);
+
 	friend class Player;
 	friend class PlayerWheel;
 	friend class PlayerVIP;

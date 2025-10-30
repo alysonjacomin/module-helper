@@ -1456,6 +1456,9 @@ void ProtocolGame::parsePacketFromDispatcher(NetworkMessage &msg, uint8_t recvby
 		case 0xFA:
 			parseChangeGold(msg);
 			break;
+		case 0xFB:
+			parseCheckInventoryItem(msg);
+			break;
 			// case 0xFA: parseStoreOpen(msg); break;
 			// case 0xFB: parseStoreRequestOffers(msg); break;
 			// case 0xFC: parseStoreBuyOffer(msg) break;
@@ -10045,4 +10048,18 @@ void ProtocolGame::parseSelectSpellAimProtocol(NetworkMessage &msg) {
 
 void ProtocolGame::parseChangeGold(NetworkMessage &msg) {
 	player->changeGold();
+}
+
+void ProtocolGame::parseCheckInventoryItem(NetworkMessage &msg) {
+	const uint32_t itemId = msg.getByte();
+	bool check = player->checkInventoryItem(itemId);
+	sendCheckInventoryItem(itemId, check);
+}
+
+void ProtocolGame::sendCheckInventoryItem(const uint32_t itemId, bool check) {
+	NetworkMessage msg;
+	msg.addByte(0xE3);
+	msg.add<uint32_t>(itemId);
+	msg.add<uint8_t>(check ? 1 : 0);
+	writeToOutputBuffer(msg);
 }

@@ -1418,6 +1418,7 @@ public:
 	std::unordered_map<uint16_t, uint8_t> spellActivedAimMap;
 
 	void changeGold();
+	bool checkInventoryItem(uint32_t itemId);
 
 private:
 	friend class PlayerLock;
