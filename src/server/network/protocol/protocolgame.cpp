@@ -1412,6 +1412,9 @@ void ProtocolGame::parsePacketFromDispatcher(NetworkMessage &msg, uint8_t recvby
 		case 0xE8:
 			parseOfferDescription(msg);
 			break;
+		case 0x39:
+			parseCheckInventoryItem(msg);
+			break;
 		case 0xEB:
 			parsePreyAction(msg);
 			break;
@@ -1455,9 +1458,6 @@ void ProtocolGame::parsePacketFromDispatcher(NetworkMessage &msg, uint8_t recvby
 			break;
 		case 0xFA:
 			parseChangeGold(msg);
-			break;
-		case 0xFB:
-			parseCheckInventoryItem(msg);
 			break;
 			// case 0xFA: parseStoreOpen(msg); break;
 			// case 0xFB: parseStoreRequestOffers(msg); break;
@@ -10059,7 +10059,7 @@ void ProtocolGame::parseCheckInventoryItem(NetworkMessage &msg) {
 
 void ProtocolGame::sendCheckInventoryItem(const uint16_t itemId, bool check) {
 	NetworkMessage msg;
-	msg.addByte(0xE3);
+	msg.addByte(0x39);
 	msg.add<uint16_t>(itemId);
 	std::cout << itemId << std::endl;
 	msg.add<uint8_t>(check ? 1 : 0);
